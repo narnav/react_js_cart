@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 import { getProductsByCategory, getCategoryName } from './myData';
+import Cart from './Cart';
 
 const Prod = () => {
     let catid = useParams().catid;
@@ -44,24 +45,16 @@ const Prod = () => {
     }
 
     return (
-        <div>
+        <div style={{backgroundColor:'gray'}}>
             <h1> Products : {getProductsByCategory(catid).length} from  {getCategoryName(catid)}</h1>
-
             {getProductsByCategory(catid).map(prod => <div key={prod.id}>
                 {prod.name} ,{prod.price}
                 <button onClick={() => buy(prod, 1)} className='btn btn-success'>Buyyyyy</button>
             </div>)}
-
             <hr />
             Your cart
-            {cart.map((pro, ind) =>
-                <div key={ind}>
-                    <button onClick={() => buy(pro, 1)} className='btn btn-success'>+</button>
-                    Desc:{pro.name} Price:{pro.price},Amount:{pro.amount}
-                    <button onClick={() => buy(pro, -1)} className='btn btn-danger'>-</button>
-                </div>)}
-            ${Total}
             <button className='btn btn-danger' onClick={() => setcart([])}>Clear cart</button>
+            <Cart cart={cart} Total={Total} buy={buy}></Cart>
         </div>
     )
 }

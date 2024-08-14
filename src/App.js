@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Outlet } from "react-router-dom";
 const App = () => {
     return (
-        <div>
+        <div style={{backgroundColor:'fuchsia'}}>
             App
             <nav style={{ borderBottom: "solid 1px", paddingBottom: "1rem" }}>
                 <Link to="/">Home</Link> |{" "}
